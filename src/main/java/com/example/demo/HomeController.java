@@ -18,7 +18,7 @@ public class HomeController {
 
     @RequestMapping("/")
     public String listCourses(Model model){
-        model.addAttribute("Courses", courseRepository.findAll());
+        model.addAttribute("courses", courseRepository.findAll());
         return "list";
     }
 
@@ -39,13 +39,13 @@ public class HomeController {
 
     @RequestMapping("/detail/{id}")
     public String showCourse(@PathVariable("id") long id, Model model){
-        model.addAttribute("course", courseRepository.findOne(id));
+        model.addAttribute("course", courseRepository.findById(id).get());
         return "show";
     }
 
     @RequestMapping("/update/{id}")
     public String updateCourse(@PathVariable("id") long id, Model model){
-        model.addAttribute("course", courseRepository.findOne(id));
+        model.addAttribute("course", courseRepository.findById(id));
         return "courseform";
     }
 
